@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Hour - Find Local Restaurant Deals & Happy Hours</title>
+    <meta name="description" content="Discover amazing restaurant deals and happy hours in your area with Flash Hour. Save money on dining out with time-sensitive deals and real-time happy hour schedules.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #222222;
+            background: linear-gradient(135deg, #F8F6F3 0%, #FFFFFF 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 111, 60, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FF6F3C;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #FF6F3C;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #666666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #FF6F3C;
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 111, 60, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 111, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #FF6F3C;
+            border: 2px solid #FF6F3C;
+        }
+
+        .btn-secondary:hover {
+            background: #FF6F3C;
+            color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #222222;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #F8F6F3;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #222222;
+        }
+
+        .feature-card p {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #FF6F3C 0%, #FF9460 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #222222;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FF6F3C;
+        }
+
+        .footer-section a {
+            color: #CCCCCC;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FF6F3C;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444444;
+            color: #CCCCCC;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">⚡ Flash Hour</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="/support.html">Support</a></li>
+                <li><a href="/privacy.html">Privacy</a></li>
+                <li><a href="/terms.html">Terms</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Flash Hour</h1>
+                <p class="subtitle">Find Local Restaurant Deals & Happy Hours</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <span>🍎</span>
+                        Download for iOS
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <span>⚡</span>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose Flash Hour?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Flash Deals</h3>
+                        <p>Limited-time offers that expire quickly with real-time countdown timers. Never miss out on exclusive deals!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🍺</div>
+                        <h3>Happy Hours</h3>
+                        <p>Browse happy hour schedules and get real-time status updates. Know exactly when and where to find the best deals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <h3>Location-Based</h3>
+                        <p>Find deals based on your current location. Get directions to restaurants with one tap and discover new places.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Save & Follow</h3>
+                        <p>Save your favorite deals for later and follow restaurants to get notified of new offers. Never miss a deal again!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Restaurant Dashboard</h3>
+                        <p>Restaurant owners can create and manage deals, track performance, and reach more customers with our easy-to-use dashboard.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Smart Discovery</h3>
+                        <p>Our intelligent algorithm shows you the best deals based on your location, preferences, and timing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Start Saving?</h2>
+                <p>Join thousands of users who are already saving money on dining out with Flash Hour.</p>
+                <a href="#" class="btn btn-secondary">
+                    <span>🍎</span>
+                    Download Now
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Flash Hour</h3>
+                    <p>Find the best restaurant deals and happy hours in your area. Save money on dining out with time-sensitive offers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="/support.html">Help Center</a>
+                    <a href="mailto:support@flashhour.app">Contact Us</a>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>For Restaurants</h3>
+                    <a href="#features">Create Deals</a>
+                    <a href="#features">Dashboard</a>
+                    <a href="mailto:business@flashhour.app">Business Inquiries</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Flash Hour. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
