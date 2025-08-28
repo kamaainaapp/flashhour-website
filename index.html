@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flash Hour - Find Local Restaurant Deals & Happy Hours</title>
     <meta name="description" content="Discover amazing restaurant deals and happy hours in your area with Flash Hour. Save money on dining out with time-sensitive deals and real-time happy hour schedules.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="icon" href="../assets/images/favicon.png">
     <style>
         * {
             margin: 0;
@@ -46,10 +46,18 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
             font-size: 1.8rem;
             font-weight: 700;
             color: #FF6F3C;
-            text-decoration: none;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
         }
 
         .nav-links {
@@ -73,20 +81,44 @@
         .hero {
             padding: 120px 0 80px;
             text-align: center;
+            background: linear-gradient(135deg, #FF9460 0%, #FF6F3C 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            color: #222222;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .hero .subtitle {
             font-size: 1.5rem;
-            color: #666666;
             margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
         .hero-buttons {
@@ -108,31 +140,142 @@
         }
 
         .btn-primary {
-            background: #FF6F3C;
-            color: white;
-            box-shadow: 0 4px 20px rgba(255, 111, 60, 0.3);
+            background: white;
+            color: #FF6F3C;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(255, 111, 60, 0.4);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
         }
 
         .btn-secondary {
-            background: white;
-            color: #FF6F3C;
-            border: 2px solid #FF6F3C;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         .btn-secondary:hover {
-            background: #FF6F3C;
+            background: white;
+            color: #FF6F3C;
+        }
+
+        /* App Showcase */
+        .showcase {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .showcase-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #222222;
+        }
+
+        .showcase-content p {
+            font-size: 1.2rem;
+            color: #666666;
+            margin-bottom: 2rem;
+        }
+
+        .showcase-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .phone-mockup {
+            position: relative;
+            display: inline-block;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 560px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #f8f6f3;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 32px;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF9460 0%, #FF6F3C 100%);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: opacity 0.15s ease;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .screenshot-thumb {
+            width: 80px;
+            height: 160px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 4px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-thumb:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot-thumb.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255, 111, 60, 0.3);
+        }
+
+        .screenshot-thumb .phone-screen {
+            border-radius: 16px;
+        }
+
+        .screenshot-thumb .screenshot-placeholder {
+            border-radius: 16px;
+            font-size: 0.8rem;
         }
 
         /* Features Section */
         .features {
             padding: 80px 0;
-            background: white;
+            background: #F8F6F3;
         }
 
         .section-title {
@@ -145,38 +288,47 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .feature-card {
-            background: #F8F6F3;
+            background: white;
             padding: 2rem;
             border-radius: 16px;
             text-align: center;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FF9460 0%, #FF6F3C 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: #222222;
         }
 
         .feature-card p {
             color: #666666;
-            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         /* CTA Section */
@@ -188,7 +340,7 @@
         }
 
         .cta h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -263,18 +415,34 @@
                 max-width: 300px;
                 justify-content: center;
             }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .showcase-content h2 {
+                font-size: 2rem;
+            }
+
+            .showcase-image img {
+                width: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="/" class="logo">⚡ Flash Hour</a>
+            <a href="/" class="logo">
+                <img src="../assets/images/icon.png" alt="Flash Hour Logo">
+                Flash Hour
+            </a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="/support.html">Support</a></li>
-                <li><a href="/privacy.html">Privacy</a></li>
-                <li><a href="/terms.html">Terms</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
             </ul>
         </nav>
     </header>
@@ -282,54 +450,91 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Flash Hour</h1>
-                <p class="subtitle">Find Local Restaurant Deals & Happy Hours</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">
-                        <span>🍎</span>
-                        Download for iOS
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        <span>⚡</span>
-                        Learn More
-                    </a>
+                <div class="hero-content">
+                    <h1>Flash Hour</h1>
+                    <p class="subtitle">Find Local Restaurant Deals & Happy Hours</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">
+                            <span>🍎</span>
+                            Download for iOS
+                        </a>
+                        <a href="#features" class="btn btn-secondary">
+                            <span>⚡</span>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase">
+            <div class="container">
+                <div class="showcase-grid">
+                    <div class="showcase-content">
+                        <h2>Discover Amazing Deals</h2>
+                        <p>Find the best restaurant deals and happy hours in your area. Save money on dining out with time-sensitive offers.</p>
+                    </div>
+                    <div class="showcase-image">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <div class="screenshot-placeholder" id="main-screenshot">
+                                        Main Deals Screen
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="screenshot-grid">
+                            <div class="screenshot-thumb active" data-screenshot="Main Deals Screen">
+                                <div class="phone-screen">
+                                    <div class="screenshot-placeholder">
+                                        Deals
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="screenshot-thumb" data-screenshot="Following Screen">
+                                <div class="phone-screen">
+                                    <div class="screenshot-placeholder">
+                                        Following
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="screenshot-thumb" data-screenshot="Profile Screen">
+                                <div class="phone-screen">
+                                    <div class="screenshot-placeholder">
+                                        Profile
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="features" id="features">
             <div class="container">
-                <h2 class="section-title">Why Choose Flash Hour?</h2>
+                <h2 class="section-title">Why Flash Hour?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
-                        <h3>Flash Deals</h3>
-                        <p>Limited-time offers that expire quickly with real-time countdown timers. Never miss out on exclusive deals!</p>
+                        <h3>Flash Hours</h3>
+                        <p>Limited-time offers with real-time countdown timers</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🍺</div>
                         <h3>Happy Hours</h3>
-                        <p>Browse happy hour schedules and get real-time status updates. Know exactly when and where to find the best deals.</p>
+                        <p>Browse schedules and get real-time status updates</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📍</div>
                         <h3>Location-Based</h3>
-                        <p>Find deals based on your current location. Get directions to restaurants with one tap and discover new places.</p>
+                        <p>Find deals based on your current location</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">💾</div>
                         <h3>Save & Follow</h3>
-                        <p>Save your favorite deals for later and follow restaurants to get notified of new offers. Never miss a deal again!</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Restaurant Dashboard</h3>
-                        <p>Restaurant owners can create and manage deals, track performance, and reach more customers with our easy-to-use dashboard.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>Smart Discovery</h3>
-                        <p>Our intelligent algorithm shows you the best deals based on your location, preferences, and timing.</p>
+                        <p>Save deals and follow restaurants for updates</p>
                     </div>
                 </div>
             </div>
@@ -338,7 +543,7 @@
         <section class="cta">
             <div class="container">
                 <h2>Ready to Start Saving?</h2>
-                <p>Join thousands of users who are already saving money on dining out with Flash Hour.</p>
+                <p>Join thousands of users saving money on dining out</p>
                 <a href="#" class="btn btn-secondary">
                     <span>🍎</span>
                     Download Now
@@ -352,19 +557,17 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Flash Hour</h3>
-                    <p>Find the best restaurant deals and happy hours in your area. Save money on dining out with time-sensitive offers.</p>
+                    <p>Find the best restaurant deals and happy hours in your area.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Support</h3>
-                    <a href="/support.html">Help Center</a>
+                    <a href="support.html">Help Center</a>
                     <a href="mailto:support@flashhour.app">Contact Us</a>
-                    <a href="/privacy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-section">
                     <h3>For Restaurants</h3>
-                    <a href="#features">Create Deals</a>
-                    <a href="#features">Dashboard</a>
                     <a href="mailto:business@flashhour.app">Business Inquiries</a>
                 </div>
             </div>
@@ -373,5 +576,33 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Interactive screenshot functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainScreenshot = document.getElementById('main-screenshot');
+            const thumbnails = document.querySelectorAll('.screenshot-thumb');
+            
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    
+                    // Update main screenshot text
+                    const screenshotText = this.getAttribute('data-screenshot');
+                    mainScreenshot.textContent = screenshotText;
+                    
+                    // Add smooth transition effect
+                    mainScreenshot.style.opacity = '0';
+                    setTimeout(() => {
+                        mainScreenshot.style.opacity = '1';
+                    }, 150);
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
